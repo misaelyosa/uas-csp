@@ -2,7 +2,6 @@
 
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { NextResponse } from 'next/server'
 
 export async function registerUser(formData: FormData) {
   const supabase = createClient()
@@ -15,11 +14,7 @@ export async function registerUser(formData: FormData) {
     password
   })
 
-  if (error) {NextResponse.json(error.message)
-    NextResponse.json(error.message)
-    alert('Registration failed: ' + error.message)
-    return
-  }
+  if (error) throw new Error(error.message)
 
   redirect('/login')
 }
@@ -35,11 +30,7 @@ export async function loginUser(formData: FormData) {
     password
   })
 
-  if (error) {
-    NextResponse.json(error.message)
-    alert('Login failed: ' + error.message)
-    return
-  }
+  if (error) throw new Error(error.message)
 
   redirect('/dashboard')
 }
