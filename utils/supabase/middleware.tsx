@@ -21,7 +21,7 @@ export async function updateSession(request: NextRequest) {
       },
     }
   );
-  supabase.auth.getUser();
+ supabase.auth.getUser();
 
   return supabaseResponse;
 }
